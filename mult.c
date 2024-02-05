@@ -10,7 +10,7 @@ void f_mul(stack_t **head, unsigned int counter)
 	stack_t *hd;
 	int leng = 0, a;
 
-	h = *head;
+	hd = *head;
 	while (hd)
 	{
 		hd = hd->next;

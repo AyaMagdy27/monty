@@ -8,13 +8,13 @@
 void f_div(stack_t **head, unsigned int counter)
 {
 	stack_t *hd;
-	int leng = 0, aux;
+	int leng = 0, a;
 
 	hd = *head;
 	while (hd)
 	{
 		hd = hd->next;
-		lend++;
+		leng++;
 	}
 	if (leng < 2)
 	{

@@ -8,38 +8,36 @@ bus_t bus = {NULL, NULL, NULL, 0};
 */
 int main(int argc, char *argv[])
 {
-	char *cont;
-	FILE *f;
-	size_t s = 0;
-	ssize_t rl = 1;
-	stack_t *sk = NULL;
-	unsigned int count = 0;
+	char *content;
+	FILE *file;
+	ssize_t read_line = 1;
+	stack_t *stack = NULL;
+	unsigned int counter = 0;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	f = fopen(argv[1], "r");
-	bus.file = f;
-	if (!f)
+	file = fopen(argv[1], "r");
+	bus.file = file;
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (rl > 0)
+	while (read_line > 0)
 	{
-		cont = NULL;
-		rl = getline(&cont, &s, f);
-		bus.content = cont;
-		count++;
-		if (rl > 0)
+		content = NULL;
+		bus.content = content;
+		counter++;
+		if (read_line > 0)
 		{
-			execute(cont, &sk, count, f);
+			execute(content, &stack, counter, file);
 		}
-		free(cont);
+		free(content);
 	}
-	free_stack(sk);
-	fclose(f);
+	free_stack(stack);
+	fclose(file);
 return (0);
 }
